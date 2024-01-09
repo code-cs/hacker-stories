@@ -21,10 +21,14 @@ const App = () => {
     },
   ];
 
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+  };
+
   return (
     <div>
       <h1>My hacker story</h1>
-      <Search />
+      <Search onSearch={handleSearch} />
       <hr />
       <List list={stories} />
     </div>
@@ -50,11 +54,12 @@ const Item = (props) => (
   </li>
 );
 
-const Search = () => {
+const Search = (props) => {
   const [searchItem, setSearchItem] = useState('');
 
   const onChangeHandler = (event) => {
     setSearchItem(event.target.value);
+    props.onSearch(event);
   };
 
   return (
